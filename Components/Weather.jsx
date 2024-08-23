@@ -75,7 +75,11 @@ const getLocalTime = () => {
 
 
               <p className='celcious'>{data.main ? `${Math.round(data.main.temp)}℃` : "N/A"}</p>
+              
               <p className='city'>{data.name ? data.name: "N/A"}</p>
+              <p className='description'>
+              {data.weather && data.weather.length > 0 ? data.weather[0].description : "N/A"}
+              </p>
               {/* <p className='time'>{getLocalTime()}</p> */}
               <DateTime></DateTime>
               <p>Low {data.main ? `${Math.round(data.main.temp_min)}℃` : "N/A"} - High {data.main ? `${Math.round(data.main.temp_max)}℃` : "N/A"}</p>
