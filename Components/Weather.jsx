@@ -74,12 +74,12 @@ const getLocalTime = () => {
               <img className='cloudy_icon' src={cloudy_icon} alt="cloudy" />
 
 
-              <p className='celcious'>{data.main ? `${data.main.temp}℃` : "N/A"}</p>
+              <p className='celcious'>{data.main ? `${Math.round(data.main.temp)}℃` : "N/A"}</p>
               <p className='city'>{data.name ? data.name: "N/A"}</p>
               {/* <p className='time'>{getLocalTime()}</p> */}
               <DateTime></DateTime>
-              <p>Low {data.main ? `${data.main.temp_min}℃` : "N/A"} - High {data.main ? `${data.main.temp_max}℃` : "N/A"}</p>
-              <p>Feels like {data.main ? `${data.main.feels_like}℃` : "N/A"}</p>
+              <p>Low {data.main ? `${Math.round(data.main.temp_min)}℃` : "N/A"} - High {data.main ? `${Math.round(data.main.temp_max)}℃` : "N/A"}</p>
+              <p>Feels like {data.main ? `${Math.round(data.main.feels_like)}℃` : "N/A"}</p>
               <p>Humidity {data.main ? `${data.main.humidity}%` : "N/A"}</p>
 
               
