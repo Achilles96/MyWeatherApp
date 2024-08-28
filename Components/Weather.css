@@ -1,7 +1,7 @@
 .weather{
     margin-top: 10rem;
-    width: 60vh;
-    height: 70vh;
+    width: 61vh;
+    height: 75vh;
     place-self: center;
     margin-bottom: 9rem;
     padding: 8px;
@@ -75,5 +75,20 @@ height: auto;
 }
 .description{
     font-size: 25px;
-    ;
+    margin: -11px;
 }
+
+.low_high{
+    margin: 0;
+}
+
+.time-and-date {
+    text-align: center; /* Center align the text */
+    margin: 1rem 0; /* Optional: add some margin for spacing */
+  }
+  
+  .date, .time {
+    margin: 0; /* Remove default margins for cleaner look */
+    font-size: 1.2rem; /* Adjust font size if needed */
+  }
+  

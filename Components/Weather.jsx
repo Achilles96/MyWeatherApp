@@ -2,7 +2,6 @@ import './Weather.css'
 import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import DateTime from './DateTime'
 import search_Icon from '../src/assets/searchIcon.png'
 import cloudy_icon from '../src/assets/cloudy.png'
 import drizzle_icon from '../src/assets/drizzle.png'
@@ -13,7 +12,7 @@ import snowy_Icon from '../src/assets/snowy.png'
 import storm_Icon from '../src/assets/storm.png'
 import sun_Icon from '../src/assets/sun.png'
 import wind_Icon from '../src/assets/wind.png'
-
+import FormattedDate from './DateTime'
 
 
 
@@ -48,12 +47,7 @@ const handleKeyPress = (event) => {
   }
   
 }
-const getLocalTime = () => {
-  if (!data.timezone) return 'N/A';
 
-  const timezoneOffsetInSeconds = data.timezone;
-  const localDate = new Date(new Date().getTime() + timezoneOffsetInSeconds * 2000);
-  return localDate.toLocaleTimeString();}
 
 
   return (
@@ -80,13 +74,19 @@ const getLocalTime = () => {
               <p className='description'>
               {data.weather && data.weather.length > 0 ? data.weather[0].description : "N/A"}
               </p>
-              {/* <p className='time'>{getLocalTime()}</p> */}
-              <DateTime></DateTime>
-              <p>Low {data.main ? `${Math.round(data.main.temp_min)}℃` : "N/A"} - High {data.main ? `${Math.round(data.main.temp_max)}℃` : "N/A"}</p>
+              
+
+
+              <FormattedDate unixTimestamp={data.dt} timezoneOffset={data.timezone} />
+
+
+
+              <p className='low_high'>Low {data.main ? `${Math.round(data.main.temp_min)}℃` : "N/A"} - High {data.main ? `${Math.round(data.main.temp_max)}℃` : "N/A"}</p>
               <p>Feels like {data.main ? `${Math.round(data.main.feels_like)}℃` : "N/A"}</p>
               <p>Humidity {data.main ? `${data.main.humidity}%` : "N/A"}</p>
-
-              
+             
+               {/* Debugging wind speed */}
+               <p>Wind Speed: {data.wind ? `${data.wind.speed} m/s` : "N/A"}</p>
 
               </div>
               
