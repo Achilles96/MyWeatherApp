@@ -67,6 +67,17 @@ height: auto;
     font-weight: 500;
 }
 
+
+.weather_details .icon {
+    max-width: 100px; /* Adjust as needed */
+    max-height: 100px; /* Adjust as needed */
+    width: 100%; /* Ensure it scales responsively */
+    height: auto; /* Maintain aspect ratio */
+    margin: 10px 0; /* Add some spacing if needed */
+  }
+
+
+
 .celcious{
     font-size: 50px;
 }
