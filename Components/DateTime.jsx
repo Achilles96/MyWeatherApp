@@ -45,6 +45,8 @@ const FormattedDate = ({timezoneOffset }) => {
     return { formattedDate, formattedTime };
   };
 
+
+
   // Get the date to display using the timezone offset
   const localDateTime = convertToLocalTime(currentTime, timezoneOffset);
   const { formattedDate, formattedTime } = formatDateTime(localDateTime);
@@ -58,3 +60,5 @@ const FormattedDate = ({timezoneOffset }) => {
 };
 
 export default FormattedDate;
+
+

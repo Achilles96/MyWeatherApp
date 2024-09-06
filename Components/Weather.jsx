@@ -5,6 +5,7 @@ import {useState} from 'react'
 import search_Icon from '../src/assets/searchIcon.png'
 import FormattedDate from './DateTime'
 import IconChange from './IconsUpdate'
+import UserLocation from './UserLocation'
 
 
 
@@ -44,6 +45,7 @@ const handleKeyPress = (event) => {
 
   return (
     <div className='weather'>
+       <UserLocation></UserLocation>
            <div className='search_bar' >
              <input 
              value={city}
@@ -70,12 +72,12 @@ const handleKeyPress = (event) => {
 
               <p className='celcious'>{data.main ? `${Math.round(data.main.temp)}℃` : "N/A"}</p>
               
-              <p className='city'>{data.name ? data.name: "N/A"}</p>
+              <p className='city'>{data.name ? data.name: "Country/City"}</p>
               <p className='description'>
-              {data.weather && data.weather.length > 0 ? data.weather[0].description : "N/A"}
+              {data.weather && data.weather.length > 0 ? data.weather[0].description : "Weather details"}
               </p>
               <FormattedDate unixTimestamp={data.dt} timezoneOffset={data.timezone} />
-              <p className='low_high'>Low {data.main ? `${Math.round(data.main.temp_min)}℃` : "N/A"} - High {data.main ? `${Math.round(data.main.temp_max)}℃` : "N/A"}</p>
+              <p className='low_high'>Low {data.main ? `${Math.round(data.main.temp_min)}℃` : ""} - High {data.main ? `${Math.round(data.main.temp_max)}℃` : "N/A"}</p>
               <p>Feels like {data.main ? `${Math.round(data.main.feels_like)}℃` : "N/A"}</p>
               <p>Humidity {data.main ? `${data.main.humidity}%` : "N/A"}</p>
              
