@@ -13,14 +13,20 @@ import UserLocation from './UserLocation'
 const Weather = ()=>{
   const [data, setData] = useState({})
   const [city, setCity] = useState ('')
+  const [location, setLocation] = useState('')
   const API_KEY = import.meta.env.VITE_APP_ID;
 
 
+  const onLocationUpdate = (cityName) => {
+    setLocation(cityName);
+    searchCity(); // Call searchCity to fetch weather for this city
+  };
+
 const searchCity = ()=>{
   if (city.trim() !== '') {
-
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
     console.log("API URL:", url);
+
 
     axios.get(url)
     .then((response) =>{
@@ -39,13 +45,15 @@ const handleKeyPress = (event) => {
     searchCity()
   }
   
-}
+};
 
 
 
   return (
     <div className='weather'>
-       <UserLocation></UserLocation>
+       <UserLocation onLocationUpdate = {onLocationUpdate} />
+       {location && <p>Your location is: {location}</p>}
+
            <div className='search_bar' >
              <input 
              value={city}
@@ -59,35 +67,29 @@ const handleKeyPress = (event) => {
            </div>
   
           <div className='weather_details'>
-
-
-
           {data.weather && data.weather.length > 0 ? (
     <IconChange condition={data.weather[0].description} />
   ) : (
-    <p>Loading...</p>
+    ""
   )}
 
 
 
-              <p className='celcious'>{data.main ? `${Math.round(data.main.temp)}℃` : "N/A"}</p>
+              <p className='celcious'>{data.main ? `${Math.round(data.main.temp)}℃` : ""}</p>
               
-              <p className='city'>{data.name ? data.name: "Country/City"}</p>
+              <p className='city'>{data.name ? data.name: ""}</p>
               <p className='description'>
-              {data.weather && data.weather.length > 0 ? data.weather[0].description : "Weather details"}
+              {data.weather && data.weather.length > 0 ? data.weather[0].description : ""}
               </p>
               <FormattedDate unixTimestamp={data.dt} timezoneOffset={data.timezone} />
-              <p className='low_high'>Low {data.main ? `${Math.round(data.main.temp_min)}℃` : ""} - High {data.main ? `${Math.round(data.main.temp_max)}℃` : "N/A"}</p>
-              <p>Feels like {data.main ? `${Math.round(data.main.feels_like)}℃` : "N/A"}</p>
-              <p>Humidity {data.main ? `${data.main.humidity}%` : "N/A"}</p>
+              <p className='low_high'>Low {data.main ? `${Math.round(data.main.temp_min)}℃` : ""} - High {data.main ? `${Math.round(data.main.temp_max)}℃` : ""}</p>
+              <p>Feels like {data.main ? `${Math.round(data.main.feels_like)}℃` : ""}</p>
+              <p>Humidity {data.main ? `${data.main.humidity}%` : ""}</p>
              
                {/* Debugging wind speed */}
-               <p>Wind Speed: {data.wind ? `${data.wind.speed} m/s` : "N/A"}</p>
+               <p>Wind Speed: {data.wind ? `${data.wind.speed} m/s` : ""}</p>
 
-              </div>
-              
-          
-          
+              </div>              
     </div>
   )
 }
