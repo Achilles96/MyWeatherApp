@@ -50,7 +50,7 @@ const handleKeyPress = (event) => {
 
 
   return (
-    <div className='weather'>
+    <div  className='weather'>
        <UserLocation onLocationUpdate = {onLocationUpdate} />
        {location && <p className='location'>Your location is: {location}</p>}
 
