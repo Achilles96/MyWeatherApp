@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import city_img from '../src/assets/city.png';
+
 
 const FormattedDate = ({timezoneOffset }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -41,15 +43,26 @@ const FormattedDate = ({timezoneOffset }) => {
 
     const formattedDate = date.toLocaleDateString('en-US', dateOptions);
     const formattedTime = date.toLocaleTimeString('en-US', timeOptions);
-
     return { formattedDate, formattedTime };
   };
 
+ let formattedDate = <img className='skyscrapers' src={city_img} alt="city" />
+ let formattedTime = <p className='search_'>
+ <span className='search-title'>SEARCH CITY</span><br />
+ <span className='search-description'>Find out the weather conditions of the city</span>
+</p>
 
 
-  // Get the date to display using the timezone offset
-  const localDateTime = convertToLocalTime(currentTime, timezoneOffset);
-  const { formattedDate, formattedTime } = formatDateTime(localDateTime);
+
+
+ if(timezoneOffset !== undefined  && timezoneOffset !== null  ) {
+
+const localtime = convertToLocalTime (currentTime, timezoneOffset);
+({formattedDate , formattedTime} = formatDateTime (localtime));
+
+ }
+
+
 
   return (
     <div className='time-and-date'>

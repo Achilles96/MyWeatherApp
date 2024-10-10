@@ -6,6 +6,7 @@ import search_Icon from '../src/assets/searchIcon.png'
 import FormattedDate from './DateTime'
 import IconChange from './IconsUpdate'
 import UserLocation from './UserLocation'
+// import forecast from './WeeklyForecast'
 
 
 
@@ -81,13 +82,25 @@ const handleKeyPress = (event) => {
               <p className='description'>
               {data.weather && data.weather.length > 0 ? data.weather[0].description : ""}
               </p>
+
+
+
               <FormattedDate unixTimestamp={data.dt} timezoneOffset={data.timezone} />
-              <p className='low_high'>Low {data.main ? `${Math.round(data.main.temp_min)}℃` : ""} - High {data.main ? `${Math.round(data.main.temp_max)}℃` : ""}</p>
-              <p>Feels like {data.main ? `${Math.round(data.main.feels_like)}℃` : ""}</p>
-              <p>Humidity {data.main ? `${data.main.humidity}%` : ""}</p>
+
+
+
+
+              <p className='low_high'> {data.main ? `Low : ${Math.round(data.main.temp_min)}℃` : ""} {data.main ? `- High :${Math.round(data.main.temp_max)}℃` : ""}</p>
+
+
+
+              <p>{data.main ? `Feels like : ${Math.round(data.main.feels_like)}℃` : ""}</p>
+
+
+              <p> {data.main ? `Humidity : ${data.main.humidity}%` : ""}</p>
              
                {/* Debugging wind speed */}
-               <p>Wind Speed: {data.wind ? `${data.wind.speed} m/s` : ""}</p>
+               <p> {data.wind ? `Wind Speed : ${data.wind.speed} m/s` : ""}</p>
 
               </div>              
     </div>
