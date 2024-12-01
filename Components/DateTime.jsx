@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import city_img from '../src/assets/city.png';
 
 
-const FormattedDate = ({timezoneOffset }) => {
+const FormattedDate = ({ timezoneOffset }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
@@ -46,28 +46,28 @@ const FormattedDate = ({timezoneOffset }) => {
     return { formattedDate, formattedTime };
   };
 
- let formattedDate = <img className='skyscrapers' src={city_img} alt="city" />
- let formattedTime = <p className='search_'>
- <span className='search-title'>SEARCH CITY</span><br />
- <span className='search-description'>Find out the weather conditions of the city</span>
-</p>
+  let formattedDate = <img className='skyscrapers' src={city_img} alt="city" />
+  let formattedTime = <div className='search'>
+    <span className='search-title'>SEARCH CITY</span><br />
+    <span className='search-description'>Find out the weather conditions of the city</span>
+  </div>
 
 
 
 
- if(timezoneOffset !== undefined  && timezoneOffset !== null  ) {
+  if (timezoneOffset !== undefined && timezoneOffset !== null) {
 
-const localtime = convertToLocalTime (currentTime, timezoneOffset);
-({formattedDate , formattedTime} = formatDateTime (localtime));
+    const localtime = convertToLocalTime(currentTime, timezoneOffset);
+    ({ formattedDate, formattedTime } = formatDateTime(localtime));
 
- }
+  }
 
 
 
   return (
     <div className='time-and-date'>
-      <p className='date'>{formattedDate}</p>
-      <p className='time'>{formattedTime}</p>
+      <div className='date'>{formattedDate}</div>
+      <div className='time'>{formattedTime}</div>
     </div>
   );
 };
